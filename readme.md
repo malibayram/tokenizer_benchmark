@@ -131,6 +131,7 @@ Aşağıdaki tablo, farklı tokenizerların performansını detaylı bir şekild
 | microsoft/Phi-3.5-mini-instruct          | 32,011     | 803,971     | 4.5526  | 3,640               | 1,599               | 43.93           | 1,253            | 34.42        |
 | Trendyol/Trendyol-LLM-8b-chat-v2.0       | 128,256    | 488,535     | 3.0438  | 6,823               | 3,125               | 45.8            | 2,109            | 30.91        |
 | ytu-ce-cosmos/turkish-gpt2-large-750m-v0 | 50,258     | 339,852     | 2.4044  | 22,746              | 17,529              | 77.06           | 6,291            | 27.66        |
+| openai/o200k_base-gpt-4o                 | 200,019    | 491,137     | 0.5147  | 7,615               | 3,209               | 42.14           | 2,184            | 28.68        |
 
 Bu tabloda farklı tokenizerların başarım ölçütlerini karşılaştırarak, hangi yaklaşımın Türkçe dilinin morfolojik yapısına daha uygun, hangi yaklaşımın daha hızlı, hangi yaklaşımın daha anlamlı token ürettiği gibi sorulara yanıt aramak mümkündür. Böylece hem dilbilimsel bütünlüğü koruyan, hem de pratik kullanımda avantaj sağlayan tokenizasyon stratejilerine ulaşmak hedeflenir.
 

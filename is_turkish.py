@@ -26,16 +26,16 @@ def get_is_turkish(token_list, special_bow = None):
       return is_turkish_map
   
   cookies = {
-    'JSESSIONID': '19C158A2EBBD87BCF782219644E06355',
+      'JSESSIONID': '1BA812941F613165A3EE475440B24FF4',
   }
 
   headers = {
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-      'Accept-Language': 'en-US,en;q=0.9',
+      'Accept-Language': 'en-US,en;q=0.9,tr;q=0.8',
       'Cache-Control': 'max-age=0',
       'Connection': 'keep-alive',
       'Content-Type': 'application/x-www-form-urlencoded',
-      # 'Cookie': 'JSESSIONID=19C158A2EBBD87BCF782219644E06355',
+      # 'Cookie': 'JSESSIONID=1BA812941F613165A3EE475440B24FF4',
       'Origin': 'http://tools.nlp.itu.edu.tr',
       'Referer': 'http://tools.nlp.itu.edu.tr/IsTurkish',
       'Upgrade-Insecure-Requests': '1',
