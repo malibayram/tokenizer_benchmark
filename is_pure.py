@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 def kokleri_getir(text):    
     cookies = {
-        'JSESSIONID': '1BA812941F613165A3EE475440B24FF4',
+        'JSESSIONID': '6608D7C5427E292BAD60D985B93132CD',
     }
 
     headers = {

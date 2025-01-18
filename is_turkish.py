@@ -26,7 +26,7 @@ def get_is_turkish(token_list, special_bow = None):
       return is_turkish_map
   
   cookies = {
-      'JSESSIONID': '1BA812941F613165A3EE475440B24FF4',
+      'JSESSIONID': '6608D7C5427E292BAD60D985B93132CD',
   }
 
   headers = {

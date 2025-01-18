@@ -1,0 +1,33 @@
+\section{Methodology}
+
+This study focuses on evaluating tokenization strategies for morphologically rich and agglutinative languages, using Turkish as a representative example. While the primary emphasis is on Turkish, the methodology is designed to be flexible and applicable to other languages that present similar challenges in tokenization.
+
+To conduct this evaluation, we utilize the Turkish MMLU dataset \cite{bayram_turkish_nodate}, which contains 6,200 multiple-choice questions covering a diverse range of subjects. This dataset is prepared by extracting questions and answers from a preprocessed resource stored in a Hugging Face repository \cite{bayram_turkish_nodate}. The resulting text corpus, consisting of numerous sentences combined into a single dataset, ensures broad coverage of various linguistic structures encountered in Turkish. Although developed using Turkish data, the same framework can be adapted to other languages by applying analogous linguistic tools and resources.
+
+We employ several metrics to assess both the computational and linguistic aspects of tokenization:
+
+\textbf{Vocabulary Size:}  
+The total number of unique tokens (e.g., words, subwords, characters) that a tokenizer can produce. For example, a tokenizer with a vocabulary size of 50,000 might include tokens such as \texttt{"cat"} or \texttt{"run"}, as well as subword units like \texttt{"run"} and \texttt{"ning"} to handle words like \texttt{"running"}. Larger vocabularies can capture more nuanced linguistic patterns, but excessively large vocabularies may increase complexity and memory usage, while smaller vocabularies may fail to represent rare words adequately.
+
+\textbf{Total Token Count:}  
+The total number of tokens generated after applying the tokenizer to the entire dataset. For instance, the sentence \texttt{"I love programming languages"} might be split into [\texttt{"I"}, \texttt{"love"}, \texttt{"programming"}, \texttt{"languages"}] using a space-based tokenizer, resulting in four tokens. A subword-based tokenizer might generate [\texttt{"I"}, \texttt{"love"}, \texttt{"program"}, \texttt{"ming"}, \texttt{"languages"}], producing five tokens. Lower total token counts generally imply more compact representations, potentially improving efficiency.
+
+\textbf{Processing Time:}  
+The time (in seconds) required to tokenize the entire dataset, reflecting computational efficiency. For example, if a corpus of one million words is processed in 3.2 seconds, the processing time is 3.2 seconds. Faster tokenization is advantageous for large-scale training and real-time applications.
+
+\textbf{Token Percentage (\%TR):}  
+A linguistic metric that measures how many tokens correspond to valid words or morphemes in the target language. Consider the sentence \texttt{"Cats are playing"} tokenized as [\texttt{"Ca"}, \texttt{"ts"}, \texttt{"are"}, \texttt{"play"}, \texttt{"ing"}]. If \texttt{"are"}, \texttt{"play"}, and \texttt{"ing"} are considered valid linguistic units, then 3 out of 5 tokens are valid. Thus,  
+\[
+\%TR = \frac{\text{Valid Tokens (3)}}{\text{Total Tokens (5)}} \times 100 = 60\%.
+\]
+This ensures that tokenization aligns with the language’s morphology by minimizing invalid segments.
+
+\textbf{Pure Token Percentage (\%Pure):}  
+This metric evaluates the proportion of tokens that are inherently meaningful and cannot be further decomposed into smaller meaningful parts. For example, in the sentence \texttt{"The students are learning"}, \texttt{"The"} and \texttt{"are"} are pure tokens, while \texttt{"students"} (\texttt{"student"} + \texttt{"s"}) and \texttt{"learning"} (\texttt{"learn"} + \texttt{"ing"}) are not pure because they can be split into smaller units. If a tokenizer produces 100 unique tokens and 70 of them are pure, we have:  
+\[
+\%Pure = \frac{\text{Pure Tokens (70)}}{\text{Unique Tokens (100)}} \times 100 = 70\%.
+\]
+
+To ensure accurate morphological analysis and token validation, we rely on language-specific tools such as the ITU Turkish NLP Web Service \cite{eryigit_itu_2014} and the Kalbur library \cite{aksoy_ahmetaxkalbur_2024}. Similar linguistic analyzers and rule-based systems can be integrated for other languages. Computational metrics like processing time and token counts are computed using Python scripts and the Hugging Face Tokenizers library \cite{neubeck_so_2024}, ensuring scalability and adaptability.
+
+All experimental procedures, datasets, and configurations are documented for reproducibility. Although Turkish serves as the primary benchmark in this study, the methodology is transferable to other languages and datasets, offering a generalized approach to evaluating tokenization strategies in diverse linguistic environments.

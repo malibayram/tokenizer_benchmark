@@ -1,0 +1,9 @@
+model,family,parameter_size,basari
+gpt-4o,GPT,Unknown,84.84
+gemma2:27b,gemma2,27.2B,72.1
+aya-expanse:32b,command-r,32.3B,70.66
+llama3.1:70b,llama,70.6B,70.42
+qwen2.5:latest,qwen2,7.6B,61.68
+alibayram/erurollm-9b-instruct:latest,llama,9.2B,51.29
+mistral-nemo:latest,llama,12.2B,46.89
+phi3.5:latest,phi3,3.8B,29.37

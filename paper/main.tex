@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage[final, nonatbib]{neurips_2024}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+%\usepackage{hyperref}       % hyperlinks
+%\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{breakurl}
+\usepackage[breaklinks]{hyperref}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{threeparttable}
+\usepackage{wrapfig}
+\usepackage[normalem]{ulem} 
+\useunder{\uline}{\ul}{}
+
+\title{Tokenization Revisited: Balancing Efficiency and Linguistic Integrity in Multilingual NLP}
+
+\author{
+M. Ali Bayram$^1$, Ali Arda Fincan$^2$, Ahmet Semih Gümüş$^2$, Sercan Karakaş$^3$, Banu Diri$^1$\\
+$^1$Yıldız Technical University, $^2$Yeditepe University, $^3$OpenAI \\
+\texttt{malibayram20@gmail.com}
+}
+
+\begin{document}
+\maketitle
+
+\input{abstract}
+\input{introduction}
+\input{related_work}
+\input{methodology}
+\input{results_and_analysis}
+\input{conclusion}
+\input{future_work}
+
+\bibliographystyle{unsrt}
+% \bibliographystyle{plain}
+\bibliography{tokenizer}
+
+\end{document}

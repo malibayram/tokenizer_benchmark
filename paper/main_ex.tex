@@ -1,0 +1,137 @@
+\begin{abstract}
+  This paper introduces a framework for setting tokenization standards that preserve semantic integrity across a range of languages, with particular focus on morphologically complex and low-resource languages. While the study centers on Turkish as a representative case, the insights extend to English and other languages with varying linguistic complexities. We evaluate 14 tokenization strategies on a subset of the Massive Multitask Language Understanding (MMLU) benchmark, examining their impact on downstream performance, especially when data resources are limited. Our evaluation criteria include vocabulary size, token count, processing speed, and metrics to quantify the linguistic and semantic purity of tokens. The results reveal that tokenizers which preserve the internal linguistic structure and yield semantically meaningful units, such as \textit{alibayram/tr\_tokenizer} and \textit{AhmetSemih/tr\_tokenizer}, enhance downstream model performance. This underscores the importance of a balanced approach: maintaining computational efficiency while retaining morphological and semantic fidelity. We propose this framework as a guide for optimizing tokenization strategies across languages, thereby improving the quality and robustness of language models, especially when pre-training resources are scarce. Future research will explore task-specific tokenization, cross-linguistic comparisons, and the development of tailored, language-specific tokenizers for various NLP applications.
+  
+  % Keywords
+  \textbf{Keywords:} Tokenization, Morphologically Complex Languages, Low-Resource Languages, Language Models, Multilingual NLP
+  
+  \end{abstract}
+  
+  \section{Introduction}
+  
+  Tokenization, the process of segmenting text into smaller units, is foundational for natural language processing (NLP) and crucial for the performance of Large Language Models (LLMs). The segmentation scheme influences how well models capture linguistic subtleties, represent meaning, and generalize across tasks. While tokenization is relatively mature for languages like English, it becomes more challenging for morphologically complex and low-resource languages, where naïve approaches often fail to preserve semantic depth and linguistic integrity.
+  
+  Our objective is to propose a unified framework for tokenization standards that transcends language boundaries, ensuring minimal semantic loss during segmentation. We focus on Turkish as a test-bed due to its agglutinative morphology and scarcity of large-scale training data. Insights gleaned from Turkish can inform general principles applicable to English and other languages, supporting more robust multilingual NLP. Preserving semantic fidelity at the token level is particularly vital when data is limited: better tokenization can enable LLMs to achieve high performance even when training corpora are small.
+  
+  Previous work has examined tokenization for specific languages or methods. However, few studies provide a unified methodology that accounts for linguistic complexity, morphological richness, and downstream model performance. By correlating tokenization metrics with results on the Massive Multitask Language Understanding (MMLU) benchmark, our study bridges this gap. We illustrate that tokenizers preserving linguistic and semantic information improve model quality, guiding practitioners in selecting or designing tokenizers for various languages.
+  
+  We structure the paper as follows: Section 2 discusses related work, Section 3 details our methodology and evaluation metrics, Section 4 presents results and analysis, and Section 5 concludes with insights, limitations, and directions for future work.
+  
+  \section{Related Work}
+  
+  Previous efforts have often focused on language-specific tokenizers or metrics, sometimes neglecting the universality of semantic preservation:
+  
+  \textbf{Language-Specific Benchmarks.} The \textit{Arabic Tokenizers Leaderboard} \cite{noauthor_arabic_nodate} uses metrics like fertility scores. \textit{AraNizer} \cite{noauthor_riotu-labaranizer_2024} introduces custom Arabic tokenizers. The \textit{NbAiLab Tokenizer Benchmark} \cite{noauthor_nbailabtokenizer-benchmark_2024} tailors tokenization for Scandinavian languages. These examples demonstrate that language-specific adaptations are common.
+  
+  \textbf{Balancing Accuracy and Efficiency.} Diewald et al. \cite{diewald_tokenizing_2022} examined German tokenization, emphasizing both accuracy and runtime efficiency. Similarly, the linear-time BPE tokenizer \cite{neubeck_so_2024} improves scalability without sacrificing flexibility, illustrating how advances in tokenization can handle large corpora.
+  
+  \textbf{Morphologically Complex Languages.} Fewer studies target morphologically rich, low-resource languages. For such languages, preserving morphemes is crucial. Our work focuses on Turkish to derive generalizable principles for languages with complex morphology.
+  
+  \section{Methodology}
+  
+  \subsection{Data and Task}
+  
+  We use 6,200 questions from the Massive Multitask Language Understanding (MMLU) benchmark, translated into Turkish. Although we focus on Turkish, the MMLU’s diverse subject matter ensures our conclusions apply broadly. We investigate how tokenization quality correlates with downstream performance, particularly under low-resource conditions.
+  
+  \subsection{Tokenization Strategies}
+  
+  We evaluate multiple tokenizers from three main categories:
+  
+  \begin{itemize}
+      \item \textbf{Subword Tokenizers:} Byte Pair Encoding (BPE) and WordPiece segment text into subwords. Common in English, they balance vocabulary size and semantic granularity.
+      \item \textbf{Morphological Tokenizers:} Exploit linguistic knowledge to segment words into morphemes, critical for agglutinative languages like Turkish.
+      \item \textbf{Character-Level Tokenizers:} Provide fine-grained segmentation at the cost of longer sequences and potential semantic dilution.
+  \end{itemize}
+  
+  \subsection{Evaluation Metrics}
+  
+  We combine computational and linguistic measures:
+  
+  \begin{itemize}
+      \item \textbf{Vocabulary Size, Token Count, and Processing Time:} Indicate efficiency and scalability.
+      \item \textbf{Unique Token Count:} Reflects lexical diversity.
+      \item \textbf{Turkish Token Count and Percentage:} Evaluate how many tokens correspond to valid Turkish words or morphemes, serving as a proxy for semantic integrity.
+      \item \textbf{Pure Token Count and Percentage:} Assess the proportion of tokens that are inherently meaningful, ensuring semantic fidelity.
+  \end{itemize}
+  
+  These language-specific measures (e.g., Turkish Token \%) can be analogously defined for other languages, facilitating a generalizable approach.
+  
+  \subsection{Tools and Procedures}
+  
+  We utilize the Hugging Face Tokenizers library and Turkish morphological analyzers \cite{eryigit_itu_2014}, as well as \textit{Kalbur} \cite{aksoy_ahmetaxkalbur_2024}, a tool optimized for Turkish tokenization. The evaluation proceeds as follows:
+  
+  \begin{enumerate}
+      \item \textbf{Tokenization:} Apply each tokenizer to the dataset.
+      \item \textbf{Performance Measurement:} Record runtime, token counts, and vocabulary size.
+      \item \textbf{Linguistic Validation:} Use morphological analyzers to assess token purity and semantic coherence.
+  \end{enumerate}
+  
+  \subsection{Limitations}
+  
+  While MMLU is diverse, no single dataset covers all linguistic features. Morphological analyzer accuracy affects results, and runtime varies by hardware. Despite these constraints, the methodology provides meaningful insights and a reproducible framework.
+  
+  \section{Results and Analysis}
+  
+  \subsection{Tokenizer Benchmark Results}
+  
+  We evaluated 14 tokenizers on a dataset of 1,605,376 characters and 198,193 space-separated words. Table~\ref{tab:tokenizer-benchmark} summarizes key results for selected tokenizers. Those preserving morphological structure and yielding meaningful tokens (e.g., \textit{alibayram/tr\_tokenizer}, \textit{AhmetSemih/tr\_tokenizer}) achieved higher Turkish Token \% and Pure Token \%, reflecting better semantic integrity.
+  
+  \begin{table}[h]
+  \centering
+  \caption{Tokenizer Benchmark Results (Selected)}
+  \label{tab:tokenizer-benchmark}
+  \begin{tabular}{|l|r|r|r|r|r|r|r|r|}
+  \hline
+  \textbf{Tokenizer} & \textbf{Vocab Size} & \textbf{Token Count} & \textbf{Time (s)} & \textbf{Unique} & \textbf{TR \%} & \textbf{Pure \%} \\ \hline
+  alibayram/tr\_tokenizer & 30k & 476k & 2.42 & 11,531 & 98.36 & 95.87 \\ \hline
+  AhmetSemih/tr\_tokenizer & 59k & 451k & 2.48 & 13,370 & 99.12 & 99.90 \\ \hline
+  ... & & & & & & \\ \hline
+  \end{tabular}
+  \end{table}
+  
+  While focusing on Turkish, these findings generalize: preserving linguistic structure (morphemes in Turkish, or subwords aligned with meaning in English) enhances token quality.
+  
+  \subsection{Downstream MMLU Performance}
+  
+  We correlate tokenizer quality with model performance on MMLU tasks. Table~\ref{tab:mmlu-results} shows that models using semantically rich tokenizers achieve higher accuracy. Improved tokenization allows models to understand and represent linguistic rules more effectively, even when training data is limited.
+  
+  \begin{table}[h]
+  \centering
+  \caption{MMLU Benchmark Results (Selected Models)}
+  \label{tab:mmlu-results}
+  \begin{tabular}{|l|r|r|r|}
+  \hline
+  \textbf{Model} & \textbf{Params (B)} & \textbf{Accuracy (\%)} & \textbf{Time (s)} \\ \hline
+  google/gemma-2-9b & 9.2 & 69.26 & 2,276.63 \\ \hline
+  ... & & & \\ \hline
+  \end{tabular}
+  \end{table}
+  
+  This trend suggests that language-appropriate tokenization—focusing on semantic purity and morphological coherence—can lift model performance across diverse tasks and languages.
+  
+  \subsection{Key Insights}
+  
+  1. \textbf{Universal Principles}: While Turkish exemplifies the value of morphological alignment, the underlying concept—preserving semantic units—applies broadly, including to English.  
+  
+  2. \textbf{Balancing Efficiency and Fidelity}: Optimal tokenization strikes a balance between vocabulary size, processing speed, and semantic fidelity.  
+  
+  3. \textbf{Support for Low-Resource Languages}: Improved tokenization enables higher-quality models even with limited pre-training data.
+  
+  \section{Conclusion}
+  
+  This study proposes a framework for tokenization standards that retain semantic fidelity. By evaluating multiple tokenizers on a Turkish subset of MMLU, we demonstrate how linguistic integrity correlates with better downstream model performance. Although Turkish is our case study, the insights are generalizable: preserving meaningful tokens and morphological structure supports robust language understanding, benefitting diverse languages and tasks.
+  
+  \subsection{Limitations and Future Work}
+  
+  This study focuses on MMLU and Turkish morphological analyzers, which may not capture all linguistic phenomena. Future directions include:
+  
+  \begin{itemize}
+      \item \textbf{Cross-Language Studies}: Apply the framework to other morphologically complex languages and contrast results with simpler languages like English.
+      \item \textbf{Task-Specific Tokenization}: Explore how tokenization affects performance across various NLP tasks, such as machine translation or information extraction.
+      \item \textbf{Hybrid Approaches}: Combine rule-based morphological segmentation with statistical methods to create custom tokenizers for specific languages.
+      \item \textbf{Larger Benchmarks}: Validate findings on more comprehensive multilingual benchmarks.
+  \end{itemize}
+  
+  \subsection{Closing Remarks}
+  
+  By establishing tokenization standards that preserve semantics, this work guides the development of more linguistically faithful and efficient tokenizers. Such approaches enhance LLM performance, particularly for low-resource languages, ensuring models are both accessible and effective across linguistic boundaries.
+  

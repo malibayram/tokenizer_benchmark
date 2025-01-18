@@ -1,0 +1,25 @@
+\section{Future Work}
+
+This study highlights the importance of linguistic integrity and computational efficiency in tokenization, presenting a framework to guide the development of tokenizers optimized for morphologically rich and low-resource languages. Although several tokenizers were developed as part of this research, these represent only the initial stages of what is possible. As shown in Table~\ref{tab:future-tokenizers}, these tokenizers—such as \texttt{AhmetSemih/tr\_tokenizer} and \texttt{aliarda/turkish\_tokenizer}—demonstrate promising performance, achieving high Turkish Token Percentages (TR \%) and Pure Token Percentages (Pure \%). However, they currently address only a small portion of the challenges inherent in tokenizing morphologically complex languages like Turkish.
+
+\begin{table}[h]
+\centering
+\caption{Performance Metrics of Tokenizers at Initial Development Stage}
+\label{tab:future-tokenizers}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Tokenizer} & \textbf{Vocab Size} & \textbf{Token Count} & \textbf{Time (s)} & \textbf{Unique Tokens} & \textbf{Turkish Tokens} & \textbf{TR \%} & \textbf{Pure Tokens} & \textbf{Pure \%} \\ \hline
+\texttt{alibayram/tr\_tokenizer} & 30,158 & 476,556 & 2.42 & 11,531 & 11,342 & 98.36 & 11,055 & 95.87 \\ \hline
+\texttt{AhmetSemih/tr\_tokenizer} & 59,572 & 451,883 & 2.48 & 13,370 & 13,253 & 99.12 & 13,357 & 99.90 \\ \hline
+\texttt{aliarda/turkish\_tokenizer\_256k} & 256,000 & 488,267 & 2.51 & 13,631 & 13,351 & 97.95 & 12,981 & 95.23 \\ \hline
+\texttt{aliarda/turkish\_tokenizer} & 58,526 & 451,936 & 2.34 & 13,268 & 13,170 & 99.26 & 13,256 & 99.91 \\ \hline
+\end{tabular}
+}
+\end{table}
+
+Despite these promising results, much work remains to unlock the full potential of these tokenizers. Future improvements will focus on incorporating advanced morphological analysis steps, which will further enhance their capability to capture the rich grammatical and semantic structures of Turkish. These steps may include integrating more sophisticated linguistic rules, handling rare morphemes, and accounting for contextual variations that impact tokenization in complex languages. Such enhancements will not only improve linguistic fidelity but also expand the scope of the tokenizers for diverse NLP applications.
+
+Additionally, future work will explore iterative refinement processes, such as dynamic token generation based on downstream tasks and domain-specific requirements. For instance, the tokenizers could be fine-tuned for specific domains like medical, legal, or technical texts to ensure high performance in specialized applications. Moreover, incorporating unsupervised and semi-supervised learning approaches into the tokenizer development process will help address gaps in morphological and semantic coverage.
+
+Although still in the early stages of development, these tokenizers provide a strong foundation for further innovation. Their initial performance gives hope that, with targeted improvements, they can evolve into robust, versatile tools for tokenizing morphologically rich languages. By implementing these additional steps and conducting further evaluations across languages and tasks, this research aims to establish a new standard for linguistically informed tokenization, ultimately advancing the quality and efficiency of language models in a wide array of applications.
