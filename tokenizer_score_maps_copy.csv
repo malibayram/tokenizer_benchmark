@@ -1,9 +1,5 @@
 tokenizer,mmlu_model_parameter_size,mmlu_score,vocab-size,tokens-count,time,unique-token-count,turkish-token-count,turkish-token-percent,pure-token-count,pure-token-percent
 google/gemma-2,27.2,72.10,256000,497015,2.95,6383,3104,0.4863,2365,0.3705
 meta-llama/Llama-3.1,70.6,70.42,128256,488535,3.1249,6823,3125,0.458,2109,0.3091
-utter-project/EuroLLM,9.2,51.29,128000,497173,3.2019,5226,2457,0.4701,1838,0.3517
 Qwen/Qwen2.5,7.6,61.68,151665,561866,3.315,5752,2320,0.4033,1734,0.3015
 CohereForAI/aya-expanse,32.3,70.66,255029,434526,2.7651,8562,4338,0.5067,2822,0.3296
-mistralai/Mistral-Nemo,12.2,46.89,131072,534930,3.1405,4354,1971,0.4527,1571,0.3608
-microsoft/Phi-3.5,3.8,29.37,32011,803971,4.5526,3640,1599,0.4393,1253,0.3442
-openai/o200k_base-gpt-4o,Unknown,84.84,200019,491137,0.5147,7615,3209,0.4214,2184,0.2868
